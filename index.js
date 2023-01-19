@@ -1,10 +1,30 @@
 const express = require("express");
 const cors = require("cors");
+const { default: mongoose } = require("mongoose");
+
+require('dotenv').config(); 
 
 const app = express();
+
+// mongoose.connect(process.env.);
+
+app.use(express.json());
 app.use(cors());
 
+app.get("/hello", (req, res) => {
+  // la requête est formulée dans postman en local
+  // "http://localhost:3000/hello" = req dans postman
+
+  // console.log = confirmation de la connexion du serveur
+    // console.log("Je suis connectée");
+
+  // res.json = réponse à la requête (.json désigne l'objet)
+    res.json({message : "Hello"});
+});
+
+
 app.get("/", (req, res) => {
+  
   return res.json({
     restaurant: {
       path: "Le Pain Quotidien",
@@ -463,5 +483,6 @@ app.get("/", (req, res) => {
 // }
 
 app.listen(process.env.PORT || 3200, () => {
-  console.log("Server started");
+  console.log("Server started 🚀🚀🚀");
 });
+
